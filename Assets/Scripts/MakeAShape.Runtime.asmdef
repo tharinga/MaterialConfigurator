@@ -1,0 +1,16 @@
+{
+    "name": "MakeAShape.Runtime",
+    "references": [
+        "GUID:4d68981bb7b514811a414accd1084802"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
