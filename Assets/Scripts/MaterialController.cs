@@ -4,7 +4,7 @@ using Zenject;
 
 namespace MakeAShape
 {
-    public class MaterialController : MonoBehaviour, IMaterialApplier
+    public class MaterialController : MonoBehaviour, IMaterialApplier, IMaterialTargetSetter
     {
         private Dictionary<string, Material> _materials = new Dictionary<string, Material>();
 
