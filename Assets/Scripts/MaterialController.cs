@@ -36,7 +36,7 @@ namespace MakeAShape
             {
                 return;
             }
-            _targetRenderer.sharedMaterial = _materials[materialName];
+            _targetRenderer.sharedMaterial.CopyPropertiesFromMaterial(_materials[materialName]);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace MakeAShape
         private void Start()
         {
             _renderer = GetComponent<Renderer>();
+
         }
 
         [Inject]
@@ -25,6 +26,11 @@ namespace MakeAShape
         private void OnMouseUpAsButton()
         {
             _targetSetter.SetTargetRenderer(_renderer);
+        }
+
+        private void OnDestroy()
+        {
+            _renderer.sharedMaterial.CopyPropertiesFromMaterial(new Material(Shader.Find("Standard")));
         }
     }
 }
