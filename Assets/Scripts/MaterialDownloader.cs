@@ -49,6 +49,7 @@ namespace MakeAShape
             }
             
             _buttonLoader.LoadButtons(materials);
+            _materialController.LoadMaterials(materials);
         }
     }
 }
