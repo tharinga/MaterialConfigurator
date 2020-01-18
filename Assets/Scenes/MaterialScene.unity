@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &54677784
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -609,6 +609,7 @@ GameObject:
   - component: {fileID: 631657226}
   - component: {fileID: 631657225}
   - component: {fileID: 631657229}
+  - component: {fileID: 631657230}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -702,6 +703,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 200
+--- !u!114 &631657230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631657224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e64960782c7439996bbd80aaf22a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &811353770
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1016557885
 BoxCollider:
   m_ObjectHideFlags: 0
