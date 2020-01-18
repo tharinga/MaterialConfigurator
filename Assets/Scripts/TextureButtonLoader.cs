@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace MakeAShape
 {
@@ -8,6 +9,12 @@ namespace MakeAShape
         [SerializeField] private Transform _scrollView;
         [SerializeField] private GameObject _buttonPrefab;
         private IMaterialApplier _materialApplier;
+
+        [Inject]
+        public void Construct(IMaterialApplier materialApplier)
+        {
+            _materialApplier = materialApplier;
+        }
 
         public void LoadButtons(List<MaterialProperties> materials)
         {

@@ -11,6 +11,7 @@ public class DependencyInstaller : MonoInstaller<DependencyInstaller>
         Container.Bind<WebApiService>().AsSingle();
         Container.Bind<TextureButtonLoader>().FromComponentInHierarchy().AsSingle();
         Container.Bind<MaterialController>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<IMaterialApplier>().To<MaterialController>().FromResolve();
         Container.Bind<MaterialFactory>().To<StandardMaterialFactory>().AsSingle();
     }
 }
