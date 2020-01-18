@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MakeAShape
 {
-    public class ButtonLoader : MonoBehaviour
+    public class TextureButtonLoader : MonoBehaviour
     {
         [SerializeField] private Transform _scrollView;
         [SerializeField] private GameObject _buttonPrefab;

@@ -2,13 +2,22 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
+using Zenject;
 
 namespace MakeAShape
 {
     public class MaterialDownloader : MonoBehaviour
     {
-        private WebApiService _webApiService = new WebApiService();
+        private WebApiService _webApiService;
+        private TextureButtonLoader _buttonLoader;
 
+        [Inject]
+        public void Construct(WebApiService webApiService, TextureButtonLoader buttonLoader)
+        {
+            _webApiService = webApiService;
+            _buttonLoader = buttonLoader;
+        }
+        
         async void Start()
         {
             await FetchDataAsync();
