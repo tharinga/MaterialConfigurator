@@ -10,12 +10,17 @@ namespace MakeAShape
     {
         private WebApiService _webApiService;
         private TextureButtonLoader _buttonLoader;
+        private MaterialController _materialController;
 
         [Inject]
-        public void Construct(WebApiService webApiService, TextureButtonLoader buttonLoader)
+        public void Construct(
+            WebApiService webApiService, 
+            TextureButtonLoader buttonLoader,
+            MaterialController materialController)
         {
             _webApiService = webApiService;
             _buttonLoader = buttonLoader;
+            _materialController = materialController;
         }
         
         async void Start()
