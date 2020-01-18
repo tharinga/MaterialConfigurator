@@ -42,6 +42,8 @@ namespace MakeAShape
 
                 materials.Add(new MaterialProperties(materialData, albedoTexture, normalTexture));
             }
+            
+            _buttonLoader.LoadButtons(materials);
         }
     }
 }

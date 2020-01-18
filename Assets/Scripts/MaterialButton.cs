@@ -8,13 +8,9 @@ namespace MakeAShape
     {
         private Button _button;
 
-        void Start()
-        {
-            _button = GetComponent<Button>();
-        }
-
         public void Setup(IMaterialApplier materialApplier, MaterialProperties properties)
         {
+            _button = GetComponent<Button>();
             _button.image.sprite = CreateSprite(properties.AlbedoTexture);
             _button.transform.Find("Text").GetComponent<Text>().text = properties.Name;
             _button.onClick.AddListener(() => materialApplier.ApplyMaterial(properties.Name));
