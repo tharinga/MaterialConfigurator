@@ -32,6 +32,10 @@ namespace MakeAShape
 
         public void ApplyMaterial(string materialName)
         {
+            if (_targetRenderer == null)
+            {
+                return;
+            }
             _targetRenderer.sharedMaterial = _materials[materialName];
         }
     }
