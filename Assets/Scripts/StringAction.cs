@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MakeAShape
 {
-    [CreateAssetMenu(menuName = "String Event")]
+    [CreateAssetMenu(menuName = "String Action")]
     public class StringAction : ScriptableObject
     {
         private Action<string> _stringEvent;

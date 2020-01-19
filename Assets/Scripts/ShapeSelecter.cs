@@ -8,7 +8,7 @@ using Zenject;
 public class ShapeSelecter : MonoBehaviour
 {
     [SerializeField] private StringAction _shapeSelectionEvent;
-
+    
     private IUndoRedoHandler _undoRedoHandler;
 
     [Inject]
