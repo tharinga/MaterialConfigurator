@@ -8,6 +8,7 @@ namespace MakeAShape
         bool HasRedoActions { get; }
         void Undo();
         void Redo();
+        void Reset();
         void AddChangeListener(Action listener);
     }
 }

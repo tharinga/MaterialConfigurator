@@ -14,6 +14,7 @@ namespace MakeAShape
         private MaterialFactory _materialFactory;
         private MementoCaretaker _mementoCaretaker;
         private Action _onStateChanged;
+        private bool _isRendererSet;
         
         public bool HasUndoActions => _mementoCaretaker.HasUndoActions;
         public bool HasRedoActions => _mementoCaretaker.HasRedoActions;
@@ -37,14 +38,13 @@ namespace MakeAShape
         {
             _currentRenderer = targetRenderer;
             _currentMaterial = targetRenderer.sharedMaterial;
+            _isRendererSet = true;
         }
 
         public void ApplyMaterial(string materialName)
         {
-            if (_currentRenderer == null)
-            {
-                return;
-            }
+            if (!_isRendererSet) return;
+            
             _mementoCaretaker.Save(GetCurrentState());
             ApplyMaterial(_currentRenderer, _materials[materialName]);
         }
@@ -65,6 +65,12 @@ namespace MakeAShape
         public void Redo()
         {
             _mementoCaretaker.Redo(GetCurrentState());
+        }
+
+        public void Reset()
+        {
+            _mementoCaretaker.Reset();
+            _isRendererSet = false;
         }
 
         public void AddChangeListener(Action listener)

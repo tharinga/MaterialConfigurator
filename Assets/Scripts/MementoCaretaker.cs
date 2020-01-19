@@ -33,5 +33,11 @@ namespace MakeAShape
             var memento = _redo.Pop();
             memento.Restore();
         }
+
+        public void Reset()
+        {
+            _undo.Clear();
+            _redo.Clear();
+        }
     }
 }
