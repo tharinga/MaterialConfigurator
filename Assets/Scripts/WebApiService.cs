@@ -11,6 +11,10 @@ namespace MakeAShape
             using (var request = UnityWebRequest.Get(url))
             {
                 await request.SendWebRequest();
+                if (request.isHttpError || request.isNetworkError)
+                {
+                    return "";
+                }
                 return request.downloadHandler.text;
             }
         }
@@ -20,6 +24,10 @@ namespace MakeAShape
             using (var request = UnityWebRequestTexture.GetTexture(url))
             {
                 await request.SendWebRequest();
+                if (request.isHttpError || request.isNetworkError)
+                {
+                    return null;
+                }
                 return DownloadHandlerTexture.GetContent(request);
             }
         }

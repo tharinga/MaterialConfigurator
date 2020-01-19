@@ -17,5 +17,6 @@ public class DependencyInstaller : MonoInstaller<DependencyInstaller>
         Container.Bind<MaterialFactory>().To<StandardMaterialFactory>().AsSingle();
         Container.Bind<MementoCaretaker>().AsSingle();
         Container.Bind<ShapePanelAnimator>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<MaterialDownloader>().FromComponentInHierarchy().AsSingle();
     }
 }
