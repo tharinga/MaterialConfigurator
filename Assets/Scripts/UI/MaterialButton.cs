@@ -1,7 +1,6 @@
 ﻿using MakeAShape.Data;
 using MakeAShape.Factories;
 using MakeAShape.MaterialEditing;
-using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
