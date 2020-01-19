@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using MakeAShape;
+﻿using MakeAShape.MaterialEditing;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
