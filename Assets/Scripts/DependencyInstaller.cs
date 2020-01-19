@@ -13,6 +13,8 @@ public class DependencyInstaller : MonoInstaller<DependencyInstaller>
         Container.Bind<MaterialController>().FromComponentInHierarchy().AsSingle();
         Container.Bind<IMaterialApplier>().To<MaterialController>().FromResolve();
         Container.Bind<IMaterialTargetSetter>().To<MaterialController>().FromResolve();
+        Container.Bind<IUndoRedoHandler>().To<MaterialController>().FromResolve();
         Container.Bind<MaterialFactory>().To<StandardMaterialFactory>().AsSingle();
+        Container.Bind<MementoCaretaker>().AsSingle();
     }
 }
