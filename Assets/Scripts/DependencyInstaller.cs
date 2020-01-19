@@ -16,5 +16,6 @@ public class DependencyInstaller : MonoInstaller<DependencyInstaller>
         Container.Bind<IUndoRedoHandler>().To<MaterialController>().FromResolve();
         Container.Bind<MaterialFactory>().To<StandardMaterialFactory>().AsSingle();
         Container.Bind<MementoCaretaker>().AsSingle();
+        Container.Bind<ShapePanelAnimator>().FromComponentInHierarchy().AsSingle();
     }
 }
