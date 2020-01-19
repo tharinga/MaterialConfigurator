@@ -67,7 +67,7 @@ namespace MakeAShape
             _mementoCaretaker.Redo(GetCurrentState());
         }
 
-        public void Reset()
+        public void ResetHistory()
         {
             _mementoCaretaker.Reset();
             _isRendererSet = false;
