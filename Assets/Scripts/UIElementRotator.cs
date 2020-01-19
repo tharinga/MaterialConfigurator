@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MakeAShape
 {
-    public class UiElementRotator : MonoBehaviour
+    public class UIElementRotator : MonoBehaviour
     {
         [SerializeField] private int _rotationSpeed = 700;
 

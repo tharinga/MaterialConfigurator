@@ -24,7 +24,7 @@ namespace MakeAShape
         protected override Material Create(MaterialProperties properties)
         {
             var material = new Material(_shader);
-
+            material.name = properties.Name;
             material.mainTexture = properties.AlbedoTexture;
             material.mainTextureScale = properties.Tiling;
             material.SetTexture(_bumpMapId, properties.NormalMap);
