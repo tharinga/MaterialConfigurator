@@ -9,12 +9,12 @@ namespace MakeAShape
     {
         private Dictionary<string, Material> _materials = new Dictionary<string, Material>();
 
-        private MaterialTarget _currentTarget;
-        private Material _currentMaterial;
         private MaterialFactory _materialFactory;
         private MementoCaretaker _mementoCaretaker;
+        
+        private MaterialTarget _currentTarget;
         private Action _onStateChanged;
-        private bool _isRendererSet;
+        private bool _isTargetSet;
         
         public bool HasUndoActions => _mementoCaretaker.HasUndoActions;
         public bool HasRedoActions => _mementoCaretaker.HasRedoActions;
@@ -36,40 +36,44 @@ namespace MakeAShape
 
         public void SetMaterialTarget(MaterialTarget materialTarget)
         {
+            if (_currentTarget != null)
+            {
+                SaveMemento();
+            }
             _currentTarget = materialTarget;
-            _currentMaterial = materialTarget.Material;
+            _isTargetSet = true;
         }
 
         public void ApplyMaterial(string materialName)
         {
-            if (!_isRendererSet) return;
-            
-            _mementoCaretaker.Save(GetCurrentState());
+            if (!_isTargetSet) return;
+
+            SaveMemento();
             ApplyMaterial(_currentTarget, _materials[materialName]);
         }
         
         private void ApplyMaterial(MaterialTarget target, Material material)
         {
             _currentTarget = target;
-            _currentMaterial = material;
             _currentTarget.SetMaterial(material);
             _onStateChanged?.Invoke();
         }
         
         public void Undo()
         {
-            _mementoCaretaker.Undo(GetCurrentState());
+            _mementoCaretaker.Undo(CreateMemento());
         }
 
         public void Redo()
         {
-            _mementoCaretaker.Redo(GetCurrentState());
+            _mementoCaretaker.Redo(CreateMemento());
         }
 
         public void ResetHistory()
         {
             _mementoCaretaker.Reset();
-            _isRendererSet = false;
+            _isTargetSet = false;
+            _onStateChanged?.Invoke();
         }
 
         public void AddChangeListener(Action listener)
@@ -77,9 +81,14 @@ namespace MakeAShape
             _onStateChanged += listener;
         }
 
-        private Memento GetCurrentState()
+        private void SaveMemento()
         {
-            return new Memento(this, _currentTarget, _currentMaterial);
+            _mementoCaretaker.Save(CreateMemento()); 
+        }
+
+        private Memento CreateMemento()
+        {
+            return new Memento(this, _currentTarget, _currentTarget.Material);
         }
 
         private class Memento : IMemento
