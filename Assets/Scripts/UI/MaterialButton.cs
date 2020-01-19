@@ -2,21 +2,32 @@
 using MakeAShape.Factories;
 using MakeAShape.MaterialEditing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MakeAShape.UI
 {
-    [RequireComponent(typeof(Button))]
-    public class MaterialButton : MonoBehaviour
+    public class MaterialButton : Button
     {
-        private Button _button;
+        private Outline _outline;
 
         public void Setup(IMaterialApplier materialApplier, MaterialProperties properties)
         {
-            _button = GetComponent<Button>();
-            _button.image.sprite = SpriteFactory.CreateSprite(properties.AlbedoTexture);
-            _button.transform.Find("Text").GetComponent<Text>().text = properties.Name;
-            _button.onClick.AddListener(() => materialApplier.ApplyMaterial(properties.Name));
+            _outline = GetComponent<Outline>();
+            _outline.enabled = false;
+            image.sprite = SpriteFactory.CreateSprite(properties.AlbedoTexture);
+            transform.Find("Text").GetComponent<Text>().text = properties.Name;
+            onClick.AddListener(() => materialApplier.ApplyMaterial(properties.Name));
+        }
+
+        public override void OnSelect(BaseEventData eventData)
+        {
+            _outline.enabled = true;
+        }
+        
+        public override void OnDeselect(BaseEventData eventData)
+        {
+            _outline.enabled = false;
         }
     }
 }
