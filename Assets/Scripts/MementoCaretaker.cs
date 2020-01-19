@@ -19,19 +19,19 @@ namespace MakeAShape
         public void Undo(IMemento current)
         {
             if (!HasUndoActions) return;
-            
+
+            _redo.Push(current);
             var memento = _undo.Pop();
             memento.Restore();
-            _redo.Push(current);
         }
 
         public void Redo(IMemento current)
         {
             if (!HasRedoActions) return;
             
+            _undo.Push(current);
             var memento = _redo.Pop();
             memento.Restore();
-            _undo.Push(current);
         }
     }
 }
