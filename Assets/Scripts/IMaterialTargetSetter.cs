@@ -4,6 +4,6 @@ namespace MakeAShape
 {
     public interface IMaterialTargetSetter
     {
-        void SetTargetRenderer(Renderer targetRenderer);
+        void SetMaterialTarget(MaterialTarget materialTarget);
     }
 }

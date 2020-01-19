@@ -9,7 +9,7 @@ namespace MakeAShape
     {
         private Dictionary<string, Material> _materials = new Dictionary<string, Material>();
 
-        private Renderer _currentRenderer;
+        private MaterialTarget _currentTarget;
         private Material _currentMaterial;
         private MaterialFactory _materialFactory;
         private MementoCaretaker _mementoCaretaker;
@@ -34,11 +34,10 @@ namespace MakeAShape
             }
         }
 
-        public void SetTargetRenderer(Renderer targetRenderer)
+        public void SetMaterialTarget(MaterialTarget materialTarget)
         {
-            _currentRenderer = targetRenderer;
-            _currentMaterial = targetRenderer.sharedMaterial;
-            _isRendererSet = true;
+            _currentTarget = materialTarget;
+            _currentMaterial = materialTarget.Material;
         }
 
         public void ApplyMaterial(string materialName)
@@ -46,14 +45,14 @@ namespace MakeAShape
             if (!_isRendererSet) return;
             
             _mementoCaretaker.Save(GetCurrentState());
-            ApplyMaterial(_currentRenderer, _materials[materialName]);
+            ApplyMaterial(_currentTarget, _materials[materialName]);
         }
-
-        private void ApplyMaterial(Renderer renderer, Material material)
+        
+        private void ApplyMaterial(MaterialTarget target, Material material)
         {
-            _currentRenderer = renderer;
+            _currentTarget = target;
             _currentMaterial = material;
-            renderer.sharedMaterial = material;
+            _currentTarget.SetMaterial(material);
             _onStateChanged?.Invoke();
         }
         
@@ -80,29 +79,26 @@ namespace MakeAShape
 
         private Memento GetCurrentState()
         {
-            return new Memento(this, _currentRenderer, _currentMaterial);
+            return new Memento(this, _currentTarget, _currentMaterial);
         }
 
         private class Memento : IMemento
         {
             private MaterialController _controller;
-            private Renderer _renderer;
+            private MaterialTarget _target;
             private Material _material;
 
-            public Memento(MaterialController controller, Renderer renderer, Material material)
+            public Memento(MaterialController controller, MaterialTarget target, Material material)
             {
                 _controller = controller;
-                _renderer = renderer;
+                _target = target;
                 _material = material;
             }
-
+            
             public void Restore()
             {
-                _controller.ApplyMaterial(_renderer, _material);
+                _controller.ApplyMaterial(_target, _material);
             }
         }
-
-       
-        
     }
 }
